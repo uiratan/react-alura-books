@@ -66,7 +66,7 @@ function Pesquisa() {
       <ResultadoContainer>
         {livrosPesquisados.map(livro => (
           <ResultadoItem>
-            <img src={livro.src} />
+            <img src={livro.src} alt={livro.nome}/>
             <p>{livro.nome}</p>
           </ResultadoItem>
         ))}
