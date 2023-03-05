@@ -9,8 +9,6 @@ function Logo() {
                 alt='logo'
                 className='logo-img' />
             <p><strong>Alura</strong> Books</p>
-
-
         </div >
     )
 }
