@@ -8,7 +8,6 @@ const PesquisaContainer = styled.section`
     color: #FFF;
     text-align: center;
     padding: 85px 0;
-    height: 470px;
     width: 100%;
 `
 const Titulo = styled.h2`
@@ -22,12 +21,17 @@ const Subtitulo = styled.h3`
     font-weight: 500;
     margin-bottom: 40px;
 `
-const Resultado = styled.div`
+const ResultadoContainer = styled.div`
+    padding: 20px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+`
+
+const ResultadoItem = styled.div`
     cursor: pointer;
+    margin-bottom: 20px;        
     p {
         width: 200px;
     }
@@ -38,32 +42,36 @@ const Resultado = styled.div`
         border: 1px solid white;
     }
 `
-
 function Pesquisa() {
   const [livrosPesquisados, setLivrosPesquisados] = useState([]);
 
   function fazPesquisa(evento) {
     const textoDigitado = evento.target.value
-    const resultadoPesquisa = livros.filter( 
-      livro => livro.nome.toUpperCase().includes(textoDigitado.toUpperCase()))
-    setLivrosPesquisados(resultadoPesquisa)
-}
+    if (textoDigitado) {
+      const resultadoPesquisa = livros.filter(livro => livro.nome.toUpperCase().includes(textoDigitado.toUpperCase()));
+      setLivrosPesquisados(resultadoPesquisa);
+    } else {
+      setLivrosPesquisados([]);
+    }
+  }
 
   return (
     <PesquisaContainer>
-           <Titulo>Já sabe por onde começar?</Titulo>
-           <Subtitulo>Encontre seu livro em nossa estante.</Subtitulo>
-           <Input
-               placeholder="Escreva sua próxima leitura"
-               onChange={evento => fazPesquisa(evento)}
-           />
-           { livrosPesquisados.map( livro => (
-               <Resultado>
-                   <img src={livro.src}/>
-                   <p>{livro.nome}</p>
-               </Resultado>
-           ) ) }
-       </PesquisaContainer>
+      <Titulo>Já sabe por onde começar?</Titulo>
+      <Subtitulo>Encontre seu livro em nossa estante.</Subtitulo>
+      <Input
+        placeholder="Escreva sua próxima leitura"
+        onChange={evento => fazPesquisa(evento)}
+      />
+      <ResultadoContainer>
+        {livrosPesquisados.map(livro => (
+          <ResultadoItem>
+            <img src={livro.src} />
+            <p>{livro.nome}</p>
+          </ResultadoItem>
+        ))}
+      </ResultadoContainer>
+    </PesquisaContainer>
   )
 }
 
