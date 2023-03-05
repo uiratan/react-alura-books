@@ -1,4 +1,23 @@
-import './estilo.css';
+import styled from 'styled-components';
+
+const ListaOpcoes = styled.ul`
+  display: flex;
+`
+const Opcao = styled.li`
+  height: 100%;
+  padding: 0 5px;
+
+  font-size: 16px;
+  min-width: 120px;
+  margin-right: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  cursor: pointer;
+`
 
 const itensListaOpcoesHeader = [
   'CATEGORIAS',
@@ -8,13 +27,13 @@ const itensListaOpcoesHeader = [
 
 function OpcoesHeader() {
   return (
-    <ul className='lista-opcoes'>
+    <ListaOpcoes>
       {
         itensListaOpcoesHeader.map((texto) => (
-          <li className='item-lista-opcoes'><p>{texto}</p></li>
+          <Opcao><p>{texto}</p></Opcao>
         ))
       }
-    </ul>
+    </ListaOpcoes>
   )
 }
 
